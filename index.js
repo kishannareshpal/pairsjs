@@ -23,11 +23,11 @@ var Pairs = /** @class */ (function () {
             // create the folder if not already.
             fs.mkdirSync(dir_path);
         }
-        this.settingsFilePath = pathjs.join(dir_path, name);
+        this.pairsFilePath = pathjs.join(dir_path, name);
         try {
-            if (!fs.existsSync(this.settingsFilePath)) {
+            if (!fs.existsSync(this.pairsFilePath)) {
                 // settings file does not exist, create a new one.
-                fs.writeFile(this.settingsFilePath, '{}', function (err) {
+                fs.writeFile(this.pairsFilePath, '', function (err) {
                     if (err)
                         throw err;
                 });
@@ -44,13 +44,13 @@ var Pairs = /** @class */ (function () {
      */
     Pairs.prototype.toJSON = function () {
         try {
-            var data = fs.readFileSync(this.settingsFilePath, 'utf8');
+            var data = fs.readFileSync(this.pairsFilePath, 'utf8');
             var json = JSON.parse(data);
             return json;
         }
         catch (error) {
             // error reading the settings file.
-            return JSON.parse("{}");
+            return JSON.parse("{ }");
         }
     };
     /**
@@ -64,8 +64,8 @@ var Pairs = /** @class */ (function () {
      */
     Pairs.prototype.add = function (key, value, allowsOverwrite) {
         if (allowsOverwrite === void 0) { allowsOverwrite = true; }
-        var settings = this.toJSON();
-        if (settings[key]) {
+        var pairs = this.toJSON();
+        if (pairs[key]) {
             // a key with the same name is found.
             if (allowsOverwrite) {
                 // overwrite the value of the key with the new one.
@@ -77,8 +77,8 @@ var Pairs = /** @class */ (function () {
             }
         }
         else {
-            settings[key] = value;
-            fs.writeFileSync(this.settingsFilePath, JSON.stringify(settings, null, 2));
+            pairs[key] = value;
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2));
         }
     };
     /**
@@ -89,12 +89,12 @@ var Pairs = /** @class */ (function () {
      * @throws if no pair matching the the provided key was found.
      */
     Pairs.prototype.remove = function (key) {
-        var settings = this.toJSON();
-        if (settings[key]) {
+        var pairs = this.toJSON();
+        if (pairs[key]) {
             // found a pair with the passed key.
             // procceed on to removing.
-            var isDeleted = delete settings[key];
-            fs.writeFileSync(this.settingsFilePath, JSON.stringify(settings, null, 2));
+            var isDeleted = delete pairs[key];
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2));
             return isDeleted; // success
         }
         else {
@@ -112,11 +112,12 @@ var Pairs = /** @class */ (function () {
      */
     Pairs.prototype.updateValue = function (key, newValue, allowsAdding) {
         if (allowsAdding === void 0) { allowsAdding = true; }
-        var settings = this.toJSON();
-        if (settings[key]) {
+        var pairs = this.toJSON();
+        if (pairs[key]) {
             // found a pair matching the provided key.
             // update the value
-            settings[key] = newValue;
+            pairs[key] = newValue;
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2));
             return true;
         }
         else {
@@ -147,7 +148,7 @@ var Pairs = /** @class */ (function () {
         // found a pair matching the key. rename its key.
         var settings = this.toJSON();
         var updatedKeyJson = JSON.parse(JSON.stringify(settings).split('"' + key + '":').join('"' + renamedKey + '":'));
-        fs.writeFileSync(this.settingsFilePath, JSON.stringify(updatedKeyJson, null, 2));
+        fs.writeFileSync(this.pairsFilePath, JSON.stringify(updatedKeyJson, null, 2));
     };
     /**
      * Checks if a pair with the key exists.

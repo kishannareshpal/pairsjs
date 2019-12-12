@@ -4,7 +4,7 @@
  * Author: Kishan Nareshpal Jadav | https://kishannareshpal.github.io
  */
 export default class Pairs {
-    private settingsFilePath;
+    private pairsFilePath;
     /**
      * Initializes setttings.
      * Optional configurations on where to save and what the PairsJS file should be called, are all available.
@@ -66,5 +66,5 @@ export default class Pairs {
      *          the defaultValue (if provided), when no pair is found.
      *          undefined if no pair is found and no defaultValue is provided.
      */
-    get(key: string, callbackFn?: (value: any) => any, defaultValue?: any): any;
+    get(key: string, callbackFn: (value: any) => any, defaultValue?: any): any;
 }

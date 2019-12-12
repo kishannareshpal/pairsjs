@@ -1,6 +1,6 @@
 {
   "name": "@kishannareshpal/pairsjs",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "A cool JavaScript library for implementing settings functionality as key-value pairs on your node app.",
   "main": "index.js",
   "keywords": [
@@ -13,7 +13,7 @@
     "json"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./example/example.js",
     "build": "tsc",
     "watch": "tsc --watch"
   },

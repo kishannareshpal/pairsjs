@@ -9,7 +9,7 @@ import * as pathjs from 'path'
 
 export default class Pairs {    
     
-    private settingsFilePath: string;
+    private pairsFilePath: string;
     
     /**
      * Initializes setttings. 
@@ -25,12 +25,12 @@ export default class Pairs {
             fs.mkdirSync(dir_path);
         }
 
-        this.settingsFilePath = pathjs.join(dir_path, name)
+        this.pairsFilePath = pathjs.join(dir_path, name)
 
         try {
-            if (!fs.existsSync(this.settingsFilePath)) {
+            if (!fs.existsSync(this.pairsFilePath)) {
                 // settings file does not exist, create a new one.
-                fs.writeFile(this.settingsFilePath, '{}', (err) => {
+                fs.writeFile(this.pairsFilePath, '', (err) => {
                     if (err) throw err;
                 });
             }
@@ -49,13 +49,13 @@ export default class Pairs {
      */
     toJSON(): JSON {
         try {
-            let data = fs.readFileSync(this.settingsFilePath, 'utf8')
+            let data = fs.readFileSync(this.pairsFilePath, 'utf8')
             let json = JSON.parse(data)
             return json
             
         } catch (error) {
             // error reading the settings file.
-            return JSON.parse("{}")
+            return JSON.parse("{ }")
         }
     }
 
@@ -70,9 +70,9 @@ export default class Pairs {
      *                  
      */
     add(key: string, value: any, allowsOverwrite: boolean = true): void {
-        let settings: any = this.toJSON();
+        let pairs: any = this.toJSON();
 
-        if (settings[key]) {
+        if (pairs[key]) {
             // a key with the same name is found.
             if (allowsOverwrite) {
                 // overwrite the value of the key with the new one.
@@ -84,8 +84,8 @@ export default class Pairs {
             }
             
         } else {
-            settings[key] = value;
-            fs.writeFileSync(this.settingsFilePath, JSON.stringify(settings, null, 2))
+            pairs[key] = value;
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2))
         }
     }
 
@@ -98,13 +98,13 @@ export default class Pairs {
      * @throws if no pair matching the the provided key was found.
      */
     remove(key: string): boolean {
-        let settings: any = this.toJSON();
+        let pairs: any = this.toJSON();
 
-        if (settings[key]) {
+        if (pairs[key]) {
             // found a pair with the passed key.
             // procceed on to removing.
-            let isDeleted = delete settings[key];
-            fs.writeFileSync(this.settingsFilePath, JSON.stringify(settings, null, 2))
+            let isDeleted = delete pairs[key];
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2))
             return isDeleted; // success
 
         } else {
@@ -123,12 +123,13 @@ export default class Pairs {
      * @throws if no pair with the provided key is found and the allowsAdding option is set to false.
      */
     updateValue(key: string, newValue: any, allowsAdding: boolean = true): boolean {
-        let settings: any = this.toJSON()
+        let pairs: any = this.toJSON()
 
-        if (settings[key]) {
+        if (pairs[key]) {
             // found a pair matching the provided key.
             // update the value
-            settings[key] = newValue;
+            pairs[key] = newValue;
+            fs.writeFileSync(this.pairsFilePath, JSON.stringify(pairs, null, 2));
             return true;
 
         } else {
@@ -162,7 +163,7 @@ export default class Pairs {
         // found a pair matching the key. rename its key.
         let settings: any = this.toJSON();
         let updatedKeyJson = JSON.parse(JSON.stringify(settings).split('"' + key + '":').join('"' + renamedKey + '":'));
-        fs.writeFileSync(this.settingsFilePath, JSON.stringify(updatedKeyJson, null, 2));
+        fs.writeFileSync(this.pairsFilePath, JSON.stringify(updatedKeyJson, null, 2));
     }
 
 
@@ -186,7 +187,7 @@ export default class Pairs {
      *          the defaultValue (if provided), when no pair is found.
      *          undefined if no pair is found and no defaultValue is provided.
      */
-    get(key: string, callbackFn?: (value: any) => any, defaultValue?: any): any {
+    get(key: string, callbackFn: (value: any) => any, defaultValue?: any): any {
         let settings: any = this.toJSON();
         let value = settings[key];
         if (callbackFn) {
