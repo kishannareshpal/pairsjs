@@ -1,4 +1,4 @@
 # Table of contents
 
-* [PairsJSA](README.md)
+* [PairsJS](README.md)
 
