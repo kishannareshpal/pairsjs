@@ -1,14 +1,10 @@
----
-description: >-
-  A NodeJS library for easy implementation and/or manipulation of key-value
-  pairs. Can be used, for example, for configuration files.‌
----
-
 # PairsJSA
 
-## ​🌶 Getting Started is easy!
+A NodeJS library for easy implementation and/or manipulation of key-value pairs. Can be used, for example, for configuration files.‌
 
-To install PairJS into you node app run this from your command line:1
+## ​🌶 Getting Started is super easy!
+
+To install PairJS into your existing nodeJS app run this command:
 
 ```text
 $ npm install @kishannareshpal/pairsjs@1.0.0‌
