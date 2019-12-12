@@ -1,8 +1,17 @@
 {
-  "name": "settingsjs",
-  "version": "1.0.0",
+  "name": "@kishannareshpal/pairsjs",
+  "version": "1.0.5",
   "description": "A cool JavaScript library for implementing settings functionality as key-value pairs on your node app.",
   "main": "index.js",
+  "keywords": [
+    "js",
+    "pairs",
+    "key",
+    "value",
+    "store",
+    "persistence",
+    "json"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
@@ -10,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kishannareshpal/settingsjs.git"
+    "url": "git+https://github.com/kishannareshpal/pairsjs.git"
   },
   "author": "Kishan Jadav",
   "license": "WTFPL",
   "bugs": {
-    "url": "https://github.com/kishannareshpal/settingsjs/issues"
+    "url": "https://github.com/kishannareshpal/pairsjs/issues"
   },
-  "homepage": "https://github.com/kishannareshpal/settingsjs#readme",
+  "homepage": "https://github.com/kishannareshpal/pairsjs#readme",
   "devDependencies": {
     "@types/node": "^12.12.14",
     "typescript": "^3.7.3"
