@@ -6,25 +6,21 @@ A NodeJS library for easy implementation and/or manipulation of key-value pairs.
 
 To install PairJS into your existing nodeJS app run this command:
 
-```text
+```bash
 $ npm install @kishannareshpal/pairsjs@1.0.0‌
 ```
 
-Or install it via `package.json:`
+Or by adding this line into the dependencies section of your `package.json` file
 
-```text
-"@kishannareshpal/pairsjs": "1.0.0"
+```javascript
+dependencies {
+    // add this line
+    "@kishannareshpal/pairsjs": "1.0.0"
+}
+
+// and then run this command.
+$ npm install
 ```
 
-​
-
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.‌
-
-Once you're strong enough, save the world:
-
-```text
-hello.sh# Ain't no code for that yet, sorryecho 'You got to trust me on this, I saved the world'
-```
-
-​
+## 🌀 Lemme now show you How to Use this.
 
