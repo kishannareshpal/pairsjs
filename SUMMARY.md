@@ -1,5 +1,5 @@
 # Table of contents
 
 * [PairsJS](README.md)
-* [Circular Progress View](circular-progress-view.md)
+* [Circular Progress View](circularprogressview.md)
 
