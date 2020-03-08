@@ -1,5 +1,7 @@
 # PairsJS
 
+[![npm version](https://badge.fury.io/js/%40kishannareshpal%2Fpairsjs.svg)](https://badge.fury.io/js/%40kishannareshpal%2Fpairsjs)
+
 A NodeJS library for easy implementation and/or manipulation of key-value pairs. Can be used, for example, for configuration files.‌
 
 ## ​🌶 Getting Started is super easy!
@@ -15,7 +17,7 @@ Or by adding this line into the dependencies section of your `package.json` file
 ```javascript
 dependencies {
     // add this line
-    "@kishannareshpal/pairsjs": "^1.0.4"
+    "@kishannareshpal/pairsjs": "{version.number}" // for the version, see top of this page.
 }
 
 // and then run this command.
